@@ -1,0 +1,45 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  application:
+    name: product-price-service
+  profiles:
+      active: cloud
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+  # This setting is for the pivotal service registry service.
+  # There are two registration methods:
+  #   route: to enable service to service communication through router
+  #   direct: to enable service to service communication directly through the container to container
+  #           direct add the container IP address in the service registry instead of route
+  #           If you use direct then you have to enable the network policy for services to communicate
+  #           See this link -> http://docs.pivotal.io/spring-cloud-services/1-5/common/service-registry/writing-client-applications.html#consume-using-c2c
+  cloud:
+    services:
+      registrationMethod: direct
+
+
+  rabbitmq:
+    addresses:  ${vcap.services.ostore-rabbitmq.credentials.uri}
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
+
+productprice:
+  promocode:  GLOBAL654

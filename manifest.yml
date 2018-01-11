@@ -1,0 +1,27 @@
+---
+applications:
+- name: product-price-service
+  memory: 1G
+  instances: 1
+  #random-route: false
+  # We are going to use container to container communication and don't need service to be called publicly.
+  # product service will call this service internally. service will be discovered through pivotal service registry.
+  no-route: true
+  timeout: 180
+  path: ./target/productPrice-1.0-SNAPSHOT.jar
+  services:
+    - ostore-db
+    - ostore-service-registry
+    - ostore-config-server
+    - ostore-rabbitmq
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+
+
+#Bind to the following services:
+# mysql (name: ostore-db)
+# service registry (name: ostore-service-registry)
+# p-config-server (name: ostore-config-server)
+   #cf create-service -c '{ "git": { "uri": "https://github.com/mirfanmcs/ostoreconfig", "label": "master"  } }' p-config-server standard ostore-config-server
+
+# Rabbitmq (for spring cloud bus for spring cloud config and zipkin) (name: ostore-rabbitmq)
