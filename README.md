@@ -1,6 +1,6 @@
 product-price-service
 ======================
-This is the sample REST Spring boot microservice application written for the Pivotal Cloud Foundry. This application uses the Spring Cloud for different services required in microservice based architecture. This application connects to the database and returns the basic product price information. This application connects to Spring Config Server to get the product promotion code.
+This is the sample REST Spring boot microservice application written to run in the Pivotal Cloud Foundry. This application uses the Spring Cloud for different services required in microservice based architecture. This application connects to the database and returns the basic product price information. This application connects to Spring Config Server to get the product promotion code.
 
 This application uses following features / services in the Pivotal Cloud Foundry:
 
